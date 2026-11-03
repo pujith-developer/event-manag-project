@@ -54,28 +54,42 @@ function prevImage() {
 }
 
  // contact
+function contact(event) {
 
-        function contact(event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            let cname = document.getElementById("cname").value;
-            let cphone = document.getElementById("cphone").value;
-            let cemail = document.getElementById("cemail").value;
+    let name = document.getElementById("name").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let address = document.getElementById("address").value;
+    let message = document.getElementById("message").value;
 
+    if (name === "" || phone === "" || email === "" || address === "") {
+        alert("Please fill all the fields!");
+        return;
+    }
 
-            if (cname == "" || cphone == "" || cemail == "") {
-                alert("Please enter your name , mobile number and email!");
-                return;
-            }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert("Please enter a valid email!");
+        return;
+    }
 
-            localStorage.setItem("cname", cname);
-            localStorage.setItem("cphone", cphone);
-            localStorage.setItem("cemail", cemail);
+    if (phone.length !== 10) {
+        alert("Please enter valid phone number!(10)");
+        return;
+    }
 
-            alert("Submitted Successfully! Thank You!");
+    localStorage.setItem("Name", name);
+    localStorage.setItem("Phone", phone);
+    localStorage.setItem("Email", email);
+    localStorage.setItem("Address", address);
+    localStorage.setItem("Message", message);
 
-            document.getElementById("success1Msg").innerHTML =
-                "Submitted Successfully, Thank You!";
-        }
+    alert(" Submitted Successfully!");
+    document.getElementById("success1Msg").innerHTML =
+"Submitted Successfully! Thank You ❤️";
 
+    document.getElementById("contactForm").reset();
+
+}
 
